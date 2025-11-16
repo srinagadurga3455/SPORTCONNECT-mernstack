@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SportConnect - MERN Stack Application
 
 A production-ready full-stack sports booking platform connecting players with coaches and turfs.
@@ -271,3 +272,6 @@ MIT
 ## Author
 
 SportConnect Team
+=======
+# SPORTCONNECT-mernstack
+>>>>>>> 9adfc229096ee66aeae538b44074856b97b536c8
