@@ -26,7 +26,7 @@ const Signup = () => {
     if (/[A-Z]/.test(password)) strength++;
     if (/\d/.test(password)) strength++;
     if (/[@$!%*?&]/.test(password)) strength++;
-    
+
     if (strength <= 2) return { level: 'weak', color: 'red', width: '33%' };
     if (strength <= 4) return { level: 'medium', color: 'orange', width: '66%' };
     return { level: 'strong', color: 'green', width: '100%' };
@@ -35,7 +35,7 @@ const Signup = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
+
     if (name === 'password') {
       setPasswordStrength(calculatePasswordStrength(value));
     }
@@ -51,7 +51,7 @@ const Signup = () => {
     } catch (err) {
       console.error('Signup error:', err);
       if (err.code === 'ERR_NETWORK') {
-        setError('Cannot connect to server. Please make sure the backend is running on http://localhost:5000');
+        setError('Cannot connect to server. Please try again later.');
       } else {
         setError(err.response?.data?.message || 'Signup failed. Please try again.');
       }
@@ -217,18 +217,17 @@ const Signup = () => {
                 <div className="mt-2">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs text-gray-600">Password strength:</span>
-                    <span className={`text-xs font-semibold ${
-                      passwordStrength.level === 'weak' ? 'text-red-600' :
-                      passwordStrength.level === 'medium' ? 'text-orange-600' :
-                      'text-green-600'
-                    }`}>
+                    <span className={`text-xs font-semibold ${passwordStrength.level === 'weak' ? 'text-red-600' :
+                        passwordStrength.level === 'medium' ? 'text-orange-600' :
+                          'text-green-600'
+                      }`}>
                       {passwordStrength.level.toUpperCase()}
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
+                    <div
                       className="h-2 rounded-full transition-all duration-300"
-                      style={{ 
+                      style={{
                         width: passwordStrength.width,
                         backgroundColor: passwordStrength.color
                       }}
@@ -250,11 +249,10 @@ const Signup = () => {
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: 'player' })}
-                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${
-                    formData.role === 'player'
+                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${formData.role === 'player'
                       ? 'border-blue-500 bg-blue-50 text-blue-700'
                       : 'border-gray-300 hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   <svg className="h-8 w-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -265,11 +263,10 @@ const Signup = () => {
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: 'coach' })}
-                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${
-                    formData.role === 'coach'
+                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${formData.role === 'coach'
                       ? 'border-blue-500 bg-blue-50 text-blue-700'
                       : 'border-gray-300 hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   <svg className="h-8 w-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
@@ -280,11 +277,10 @@ const Signup = () => {
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, role: 'turf' })}
-                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${
-                    formData.role === 'turf'
+                  className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg transition-all duration-200 ${formData.role === 'turf'
                       ? 'border-blue-500 bg-blue-50 text-blue-700'
                       : 'border-gray-300 hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   <svg className="h-8 w-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />

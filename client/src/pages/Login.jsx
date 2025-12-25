@@ -28,7 +28,7 @@ const Login = () => {
     } catch (err) {
       console.error('Login error:', err);
       if (err.code === 'ERR_NETWORK') {
-        setError('Cannot connect to server. Please make sure the backend is running on http://localhost:5000');
+        setError('Cannot connect to server. Please try again later.');
       } else {
         setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
       }
