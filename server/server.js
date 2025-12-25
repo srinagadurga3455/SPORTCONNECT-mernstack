@@ -11,8 +11,26 @@ const app = express();
 connectDB();
 
 // Middleware
+// Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || '*', // Allow configured client or all (for dev)
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'https://sportconnectmern.vercel.app',
+      process.env.CLIENT_URL
+    ];
+
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    // Allow any Vercel preview deployment
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      console.log('Blocked by CORS:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
